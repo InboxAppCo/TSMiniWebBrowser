@@ -90,7 +90,13 @@
     
     if (webBrowser.mode == TSMiniWebBrowserModeModal) {
         webBrowser.modalDismissButtonTitle = @"Home";
+        
+#ifdef __IPHONE_6_0
+        [self presentViewController:webBrowser animated:YES completion:nil];
+#else
         [self presentModalViewController:webBrowser animated:YES];
+#endif
+        
     } else if(webBrowser.mode == TSMiniWebBrowserModeNavigation) {
         [self.navigationController pushViewController:webBrowser animated:YES];
     }

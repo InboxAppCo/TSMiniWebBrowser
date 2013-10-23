@@ -53,13 +53,13 @@
 		6F69CE2814C63D0200BB6C57 /* forward_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward_icon@2x.png"; sourceTree = "<group>"; };
 		6F69CE2914C63D0200BB6C57 /* reload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload_icon.png; sourceTree = "<group>"; };
 		6F69CE2A14C63D0200BB6C57 /* reload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reload_icon@2x.png"; sourceTree = "<group>"; };
-		6F69CE4514C6E89300BB6C57 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		6F69CE4714C6E89600BB6C57 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		6F69CE4514C6E89300BB6C57 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
+		6F69CE4714C6E89600BB6C57 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		6F96DB7214E014620088FAFB /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		6F96DB7314E014620088FAFB /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		6F96DB7414E014620088FAFB /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		6F96DB7514E014620088FAFB /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		E2EC79A1161033B2002A923D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E2EC79A1161033B2002A923D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +79,6 @@
 		6F69CDA514C6339C00BB6C57 = {
 			isa = PBXGroup;
 			children = (
-				E2EC79A1161033B2002A923D /* Default-568h@2x.png */,
-				6F69CE4714C6E89600BB6C57 /* icon@2x.png */,
-				6F69CE4514C6E89300BB6C57 /* icon.png */,
 				6F69CDD114C636D700BB6C57 /* TSMiniWebBrowser */,
 				6F69CDBA14C6339C00BB6C57 /* TSMiniWebBrowserDemo */,
 				6F69CDB314C6339C00BB6C57 /* Frameworks */,
@@ -158,6 +155,9 @@
 		6F96DB7114E014620088FAFB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E2EC79A1161033B2002A923D /* Default-568h@2x.png */,
+				6F69CE4714C6E89600BB6C57 /* icon@2x.png */,
+				6F69CE4514C6E89300BB6C57 /* icon.png */,
 				6F96DB7214E014620088FAFB /* first.png */,
 				6F96DB7314E014620088FAFB /* first@2x.png */,
 				6F96DB7414E014620088FAFB /* second.png */,
@@ -290,7 +290,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -308,7 +308,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -321,7 +321,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Prefix.pch";
 				INFOPLIST_FILE = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -333,7 +332,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Prefix.pch";
 				INFOPLIST_FILE = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
