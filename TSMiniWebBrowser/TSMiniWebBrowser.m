@@ -40,6 +40,7 @@
 @synthesize domainLockList;
 @synthesize currentURL;
 
+#define kNavBarHeight   64
 #define kToolBarHeight  44
 #define kTabBarHeight   49
 
@@ -177,11 +178,29 @@ enum actionSheetButtonIndex {
 
 -(void) initWebView {
     CGSize viewSize = self.view.frame.size;
-    if (mode == TSMiniWebBrowserModeModal) {
+    if (mode == TSMiniWebBrowserModeModal)
+    {
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, kToolBarHeight, viewSize.width, viewSize.height-kToolBarHeight*2)];
-    } else if(mode == TSMiniWebBrowserModeNavigation) {
+    }
+    else if(mode == TSMiniWebBrowserModeNavigation)
+    {
+#ifdef __IPHONE_7_0
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height)];
+        
+        if (self.showToolBar)
+        {
+            [webView.scrollView setContentInset:UIEdgeInsetsMake(kNavBarHeight, 0, kToolBarHeight,0)];
+        }
+        else
+        {
+            [webView.scrollView setContentInset:UIEdgeInsetsMake(kNavBarHeight,0,0,0)];
+        }
+#else
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height-kToolBarHeight)];
-    } else if(mode == TSMiniWebBrowserModeTabBar) {
+#endif
+    }
+    else if(mode == TSMiniWebBrowserModeTabBar)
+    {
         self.view.backgroundColor = [UIColor redColor];
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, kToolBarHeight-1, viewSize.width, viewSize.height-kToolBarHeight+1)];
     }
@@ -191,6 +210,9 @@ enum actionSheetButtonIndex {
     webView.scalesPageToFit = YES;
     
     webView.delegate = self;
+    
+    [webView setOpaque:NO];
+    webView.backgroundColor = [UIColor whiteColor];
     
     // Load the URL in the webView
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:urlToLoad];
@@ -215,6 +237,10 @@ enum actionSheetButtonIndex {
         forcedTitleBarText = nil;
         barStyle = UIBarStyleDefault;
 		barTintColor = nil;
+        
+#ifdef __IPHONE_7_0
+        self.showToolBar = YES;
+#endif
     }
     
     return self;
@@ -241,11 +267,24 @@ enum actionSheetButtonIndex {
         originalBarStyle = self.navigationController.navigationBar.barStyle;
     }
     
+#ifdef __IPHONE_7_0
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
+    // Init web view
+    [self initWebView];
+    
+    // Init tool bar
+    if (self.showToolBar)
+    {
+        [self initToolBar];
+    }
+#else
     // Init tool bar
     [self initToolBar];
     
     // Init web view
     [self initWebView];
+#endif
     
     // Init title bar if presented modally
     if (mode == TSMiniWebBrowserModeModal) {

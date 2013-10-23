@@ -69,6 +69,9 @@ typedef enum {
 @property (assign) id<TSMiniWebBrowserDelegate> delegate;
 
 @property (nonatomic, assign) TSMiniWebBrowserMode mode;
+#ifdef __IPHONE_7_0
+@property (nonatomic, assign) BOOL showToolBar;
+#endif
 @property (nonatomic, assign) BOOL showURLStringOnActionSheetTitle;
 @property (nonatomic, assign) BOOL showPageTitleOnTitleBar;
 @property (nonatomic, assign) BOOL showReloadButton;
