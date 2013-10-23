@@ -38,6 +38,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    ((INApplication *)application).urlScheme = @"tsminiweb";
+    
     BOOL wantTabBarDemo = NO;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

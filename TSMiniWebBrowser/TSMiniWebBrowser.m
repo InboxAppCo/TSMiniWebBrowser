@@ -26,6 +26,15 @@
 
 #import "TSMiniWebBrowser.h"
 
+#import "OpenInChromeController.h"
+#import "INApplication.h"
+
+@interface TSMiniWebBrowser ()
+
+@property (nonatomic, strong) OpenInChromeController *openInChromeController;
+
+@end
+
 @implementation TSMiniWebBrowser
 
 @synthesize delegate;
@@ -197,7 +206,7 @@ enum actionSheetButtonIndex {
 #ifdef __IPHONE_7_0
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height)];
         
-        if (self.showToolBar)
+        if (showToolBar)
         {
             [webView.scrollView setContentInset:UIEdgeInsetsMake(kNavBarHeight, 0, kToolBarHeight,0)];
         }
@@ -249,7 +258,7 @@ enum actionSheetButtonIndex {
 		barTintColor = nil;
         
 #ifdef __IPHONE_7_0
-        self.showToolBar = YES;
+        showToolBar = YES;
 #endif
     }
     
@@ -285,7 +294,7 @@ enum actionSheetButtonIndex {
     [self initWebView];
     
     // Init tool bar
-    if (self.showToolBar)
+    if (showToolBar)
     {
         [self initToolBar];
     }
@@ -399,7 +408,8 @@ enum actionSheetButtonIndex {
 
 - (void)showActionSheet {
     NSString *urlString = @"";
-    if (showURLStringOnActionSheetTitle) {
+    if (showURLStringOnActionSheetTitle)
+    {
         NSURL* url = [webView.request URL];
         urlString = [url absoluteString];
     }
@@ -408,7 +418,13 @@ enum actionSheetButtonIndex {
     actionSheet.delegate = self;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", nil)];
     
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]]) {
+    if (!self.openInChromeController)
+    {
+        self.openInChromeController = [[OpenInChromeController alloc] init];
+    }
+    
+    if ([self.openInChromeController isChromeInstalled])
+    {
         // Chrome is installed, add the option to open in chrome.
         [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Chrome", nil)];
     }
@@ -416,52 +432,41 @@ enum actionSheetButtonIndex {
     actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
 	actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     
-    if (mode == TSMiniWebBrowserModeTabBar) {
+    if (mode == TSMiniWebBrowserModeTabBar)
+    {
         [actionSheet showFromTabBar:self.tabBarController.tabBar];
     }
     //else if (mode == TSMiniWebBrowserModeNavigation && [self.navigationController respondsToSelector:@selector(tabBarController)]) {
-    else if (mode == TSMiniWebBrowserModeNavigation && self.navigationController.tabBarController != nil) {
+    else if (mode == TSMiniWebBrowserModeNavigation && self.navigationController.tabBarController != nil)
+    {
         [actionSheet showFromTabBar:self.navigationController.tabBarController.tabBar];
     }
-    else {
+    else
+    {
         [actionSheet showInView:self.view];
     }
     
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex == [actionSheet cancelButtonIndex]) return;
     
     NSURL *theURL = [webView.request URL];
-    if (theURL == nil || [theURL isEqual:[NSURL URLWithString:@""]]) {
+    if (theURL == nil || [theURL isEqual:[NSURL URLWithString:@""]])
+    {
         theURL = urlToLoad;
     }
     
-    if (buttonIndex == kSafariButtonIndex) {
-        [[UIApplication sharedApplication] openURL:theURL];
+    if (buttonIndex == kSafariButtonIndex)
+    {
+        NSURL *bUrl = [theURL URLByAppendingPathComponent:kPCUrlSuffSaf];
+        [[UIApplication sharedApplication] openURL:bUrl];
     }
-    else if (buttonIndex == kChromeButtonIndex) {
-        NSString *scheme = theURL.scheme;
-        
-        // Replace the URL Scheme with the Chrome equivalent.
-        NSString *chromeScheme = nil;
-        if ([scheme isEqualToString:@"http"]) {
-            chromeScheme = @"googlechrome";
-        } else if ([scheme isEqualToString:@"https"]) {
-            chromeScheme = @"googlechromes";
-        }
-        
-        // Proceed only if a valid Google Chrome URI Scheme is available.
-        if (chromeScheme) {
-            NSString *absoluteString = [theURL absoluteString];
-            NSRange rangeForScheme = [absoluteString rangeOfString:@":"];
-            NSString *urlNoScheme = [absoluteString substringFromIndex:rangeForScheme.location];
-            NSString *chromeURLString = [chromeScheme stringByAppendingString:urlNoScheme];
-            NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
-            
-            // Open the URL with Chrome.
-            [[UIApplication sharedApplication] openURL:chromeURL];
-        }
+    else if (buttonIndex == kChromeButtonIndex)
+    {
+        NSURL *bUrl = [theURL URLByAppendingPathComponent:kPCUrlSuffChr];
+        [[UIApplication sharedApplication] openURL:bUrl];
     }
 }
 

@@ -84,7 +84,7 @@
 //    webBrowser.showReloadButton = YES;
 //    [webBrowser setFixedTitleBarText:@"Test Title Text"]; // This has priority over "showPageTitleOnTitleBar".
     webBrowser.mode = TSMiniWebBrowserModeNavigation;
-    webBrowser.showToolBar = NO;
+    //webBrowser.showToolBar = NO;
     
     //webBrowser.barStyle = UIBarStyleBlack;
     

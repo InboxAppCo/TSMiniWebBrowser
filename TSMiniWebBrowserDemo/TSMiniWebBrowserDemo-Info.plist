@@ -27,7 +27,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.tonisalae.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>co.inboxapp.TSMiniWebBrowserDemo</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -38,6 +38,19 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>co.inboxapp.TSMiniWebBrowserDemo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tsminiweb</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>

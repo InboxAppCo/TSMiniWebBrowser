@@ -26,6 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "INApplication.h"
+
 @protocol TSMiniWebBrowserDelegate <NSObject>
 @optional
 -(void) tsMiniWebBrowserDidDismiss;
