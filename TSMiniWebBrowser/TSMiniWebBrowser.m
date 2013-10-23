@@ -460,13 +460,13 @@ enum actionSheetButtonIndex {
     
     if (buttonIndex == kSafariButtonIndex)
     {
-        NSURL *bUrl = [theURL URLByAppendingPathComponent:kPCUrlSuffSaf];
-        [[UIApplication sharedApplication] openURL:bUrl];
+        NSString *absString = [[theURL absoluteString] stringByAppendingString:kPCUrlSuffSaf];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:absString]];
     }
     else if (buttonIndex == kChromeButtonIndex)
     {
-        NSURL *bUrl = [theURL URLByAppendingPathComponent:kPCUrlSuffChr];
-        [[UIApplication sharedApplication] openURL:bUrl];
+        NSString *absString = [[theURL absoluteString] stringByAppendingString:kPCUrlSuffChr];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:absString]];
     }
 }
 
