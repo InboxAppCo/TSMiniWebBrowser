@@ -64,6 +64,12 @@ typedef enum {
     
     // State control
     UIBarStyle originalBarStyle;
+    
+#ifdef __IPHONE_7_0
+    BOOL showToolBar;
+    UIStatusBarStyle statusBarStyle;
+    UIStatusBarStyle originalStatusBarStyle;
+#endif
 }
 
 @property (assign) id<TSMiniWebBrowserDelegate> delegate;
@@ -71,6 +77,7 @@ typedef enum {
 @property (nonatomic, assign) TSMiniWebBrowserMode mode;
 #ifdef __IPHONE_7_0
 @property (nonatomic, assign) BOOL showToolBar;
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 #endif
 @property (nonatomic, assign) BOOL showURLStringOnActionSheetTitle;
 @property (nonatomic, assign) BOOL showPageTitleOnTitleBar;

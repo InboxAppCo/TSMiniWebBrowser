@@ -40,6 +40,11 @@
 @synthesize domainLockList;
 @synthesize currentURL;
 
+#ifdef __IPHONE_7_0
+@synthesize showToolBar;
+@synthesize statusBarStyle;
+#endif
+
 #define kNavBarHeight   64
 #define kToolBarHeight  44
 #define kTabBarHeight   49
@@ -270,6 +275,7 @@ enum actionSheetButtonIndex {
     // Store the current navigationBar bar style to be able to restore it later.
     if (mode == TSMiniWebBrowserModeNavigation) {
         originalBarStyle = self.navigationController.navigationBar.barStyle;
+        originalStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     }
     
 #ifdef __IPHONE_7_0
@@ -283,21 +289,24 @@ enum actionSheetButtonIndex {
     {
         [self initToolBar];
     }
+    
+    // Status bar style
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
 #else
     // Init tool bar
     [self initToolBar];
     
     // Init web view
     [self initWebView];
+    
+    // Status bar style
+    [[UIApplication sharedApplication] setStatusBarStyle:barStyle animated:YES];
 #endif
     
     // Init title bar if presented modally
     if (mode == TSMiniWebBrowserModeModal) {
         [self initTitleBar];
     }
-    
-    // Status bar style
-    [[UIApplication sharedApplication] setStatusBarStyle:barStyle animated:YES];
     
     // UI state
     buttonGoBack.enabled = NO;
@@ -336,7 +345,7 @@ enum actionSheetButtonIndex {
     }
     
     // Restore Status bar style
-    [[UIApplication sharedApplication] setStatusBarStyle:originalBarStyle animated:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:originalStatusBarStyle animated:NO];
     
     // Stop loading
     [webView stopLoading];
