@@ -256,6 +256,7 @@ enum actionSheetButtonIndex {
         forcedTitleBarText = nil;
         barStyle = UIBarStyleDefault;
 		barTintColor = nil;
+        self.popOnExternalBrowser = NO;
         
 #ifdef __IPHONE_7_0
         showToolBar = YES;
@@ -467,6 +468,22 @@ enum actionSheetButtonIndex {
     {
         NSString *absString = [[theURL absoluteString] stringByAppendingString:kPCUrlSuffChr];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:absString]];
+    }
+    
+    if (self.popOnExternalBrowser)
+    {
+        if ((buttonIndex == kSafariButtonIndex) || (buttonIndex == kChromeButtonIndex))
+        {
+            [self performSelector:@selector(pop) withObject:nil afterDelay:0.5f];
+        }
+    }
+}
+
+- (void)pop
+{
+    if (mode == TSMiniWebBrowserModeNavigation)
+    {
+        [self.navigationController popViewControllerAnimated:NO];
     }
 }
 
