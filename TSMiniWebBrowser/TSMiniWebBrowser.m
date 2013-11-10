@@ -27,7 +27,6 @@
 #import "TSMiniWebBrowser.h"
 
 #import "OpenInChromeController.h"
-#import "INApplication.h"
 
 @interface TSMiniWebBrowser ()
 
@@ -48,6 +47,8 @@
 @synthesize barTintColor;
 @synthesize domainLockList;
 @synthesize currentURL;
+
+@synthesize urlScheme;
 
 #ifdef __IPHONE_7_0
 @synthesize showToolBar;
@@ -461,13 +462,20 @@ enum actionSheetButtonIndex {
     
     if (buttonIndex == kSafariButtonIndex)
     {
-        NSString *absString = [[theURL absoluteString] stringByAppendingString:kPCUrlSuffSaf];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:absString]];
+        [[UIApplication sharedApplication] openURL:theURL];
     }
     else if (buttonIndex == kChromeButtonIndex)
     {
-        NSString *absString = [[theURL absoluteString] stringByAppendingString:kPCUrlSuffChr];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:absString]];
+        NSURL *callbackURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://",self.urlScheme]];
+        
+        if (!self.openInChromeController)
+        {
+            self.openInChromeController = [[OpenInChromeController alloc] init];
+        }
+        
+        [self.openInChromeController openInChrome:theURL
+                                  withCallbackURL:callbackURL
+                                     createNewTab:YES];
     }
     
     if (self.popOnExternalBrowser)

@@ -38,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ((INApplication *)application).urlScheme = @"tsminiweb";
+    //((INApplication *)application).urlScheme = @"tsminiweb";
     
     BOOL wantTabBarDemo = NO;
     

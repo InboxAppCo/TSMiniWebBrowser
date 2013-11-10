@@ -26,7 +26,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "INApplication.h"
+//#import "INApplication.h"
 
 @protocol TSMiniWebBrowserDelegate <NSObject>
 @optional
@@ -91,6 +91,8 @@ typedef enum {
 @property (nonatomic, strong) NSString *modalDismissButtonTitle;
 @property (nonatomic, strong) NSString *domainLockList;
 @property (nonatomic, strong) NSString *currentURL;
+
+@property (nonatomic, strong) NSString *urlScheme;
 
 // Public Methods
 - (id)initWithUrl:(NSURL*)url;

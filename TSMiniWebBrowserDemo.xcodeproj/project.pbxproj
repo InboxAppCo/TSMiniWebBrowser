@@ -28,7 +28,6 @@
 		6F96DB7714E014620088FAFB /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F96DB7314E014620088FAFB /* first@2x.png */; };
 		6F96DB7814E014620088FAFB /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F96DB7414E014620088FAFB /* second.png */; };
 		6F96DB7914E014620088FAFB /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F96DB7514E014620088FAFB /* second@2x.png */; };
-		9860EB9A1817940F00AA24AE /* INApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9860EB991817940F00AA24AE /* INApplication.m */; };
 		9860EBA01817A2DC00AA24AE /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9860EB9F1817A2DC00AA24AE /* OpenInChromeController.m */; };
 		E2EC79A2161033B2002A923D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2EC79A1161033B2002A923D /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -61,8 +60,6 @@
 		6F96DB7314E014620088FAFB /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		6F96DB7414E014620088FAFB /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		6F96DB7514E014620088FAFB /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		9860EB981817940F00AA24AE /* INApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INApplication.h; sourceTree = "<group>"; };
-		9860EB991817940F00AA24AE /* INApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INApplication.m; sourceTree = "<group>"; };
 		9860EB9E1817A2DC00AA24AE /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
 		9860EB9F1817A2DC00AA24AE /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 		E2EC79A1161033B2002A923D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 				6F69CE2414C63D0200BB6C57 /* images */,
 				6F69CDD214C636E100BB6C57 /* TSMiniWebBrowser.h */,
 				6F69CDD314C636E100BB6C57 /* TSMiniWebBrowser.m */,
-				9860EB981817940F00AA24AE /* INApplication.h */,
-				9860EB991817940F00AA24AE /* INApplication.m */,
 				9860EB9E1817A2DC00AA24AE /* OpenInChromeController.h */,
 				9860EB9F1817A2DC00AA24AE /* OpenInChromeController.m */,
 			);
@@ -254,7 +249,6 @@
 				6F69CDC114C6339C00BB6C57 /* main.m in Sources */,
 				6F69CDC514C6339C00BB6C57 /* AppDelegate.m in Sources */,
 				9860EBA01817A2DC00AA24AE /* OpenInChromeController.m in Sources */,
-				9860EB9A1817940F00AA24AE /* INApplication.m in Sources */,
 				6F69CDC814C6339C00BB6C57 /* ViewController.m in Sources */,
 				6F69CDD514C636E100BB6C57 /* TSMiniWebBrowser.m in Sources */,
 			);
