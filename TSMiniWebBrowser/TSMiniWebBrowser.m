@@ -340,11 +340,64 @@ enum actionSheetButtonIndex {
 		if ([subview isKindOfClass: [UIWebView class]])
 		{
 			UIWebView *sv = subview;
+            
+            if (!self.parentViewController)
+            {
+                CGRect frame = sv.frame;
+                frame.size.height -= 20;
+                frame.origin.y += 20;
+                sv.frame = frame;
+            }
+            
 			[sv.scrollView setScrollsToTop:NO];
 		}
 	}
-	
+    
+    if (!self.parentViewController)
+    {
+        [self insertNavigationBar];
+    }
+    
 	[webView.scrollView setScrollsToTop:YES];
+}
+
+- (void)insertNavigationBar
+{
+    UINavigationItem* navItem = [[UINavigationItem alloc]initWithTitle:forcedTitleBarText];
+    UIBarButtonItem* cancel = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
+        navItem.leftBarButtonItem = cancel;
+    UINavigationBar* navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
+    navBar.items = @[navItem];
+    ((UIImageView *)[self findHairlineImageViewUnder:navBar]).hidden = YES;
+    
+    [navBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.view addSubview:navBar];
+    
+}
+
+#pragma mark - UINavigationBar UIImageView
+
+- (UIImageView *)findHairlineImageViewUnder:(UIView *)view
+{
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0)
+    {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews)
+    {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView)
+        {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
+- (void)close
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
